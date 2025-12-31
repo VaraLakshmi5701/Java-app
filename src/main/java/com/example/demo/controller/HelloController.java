@@ -12,7 +12,11 @@ public class HelloController {
     public HelloController(HelloService helloService) {
         this.helloService = helloService;
     }
-
+    @GetMapping("/")
+    public String home() {
+        return "Java App is running successfully 🚀";
+    }
+    
     @GetMapping("/hello")
     public String hello() {
         return helloService.getMessage();
