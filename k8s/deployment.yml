@@ -1,0 +1,34 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: java-app
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: java-apps
+  template:
+    metadata:
+      labels:
+        app: java-apps
+    spec:
+      containers:
+        - name: Java-app
+          image: varalakshmi5701/java-app:v1
+          ports:
+           - containerPort: 80
+      readinessProbe:
+        httpGet:
+          path: /
+          port: 8080
+        initialDelaySeconds: 10
+        periodSeconds: 5
+      livenessProbe:
+        httpGet:
+          path: /
+          port: 8080
+        initialDelaySeconds: 30
+        periodSeconds: 10
+      
+        
